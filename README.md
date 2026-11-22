@@ -5,6 +5,15 @@ A machine learning application that analyses job advertisements
 and identifies patterns associated with potentially fraudulent
 job postings.
 
+## 🚀 Live Demo
+
+Try the application here:
+
+**[Job Scam Detector – Live Application](https://jobscam.streamlit.app/)**
+
+Paste a job advertisement to receive a machine learning
+classification and explore the features influencing the prediction.
+
 ## Project Overview
 
 Online job scams can expose job seekers to financial loss,
@@ -117,6 +126,10 @@ is genuinely fraudulent.
 - Improve model explainability.
 - Explore additional NLP techniques.
 - Deploy the application online.
+
+## GitHub Repository
+
+[View the source code](https://github.com/Jahanvi2013/job-scam-detector)
 
 ## Author
 
