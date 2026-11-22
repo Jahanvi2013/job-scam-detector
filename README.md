@@ -61,17 +61,129 @@ Both unigrams and bigrams were included.
 Linear SVM was selected based on its overall
 performance across the evaluation metrics.
 
-## Model Performance
+## Model Performance and Evaluation
 
-| Metric | Linear SVM |
-|---|---:|
-| Accuracy | 98.46% |
-| Precision | 85.12% |
-| Recall | 82.66% |
-| F1 Score | 83.87% |
+Three machine learning algorithms were evaluated using a
+held-out test dataset:
 
-Results are based on the held-out test set from
-the labelled dataset.
+- Logistic Regression
+- Multinomial Naive Bayes
+- Linear Support Vector Machine (SVM)
+
+Linear SVM was selected based on its overall performance
+across accuracy, precision, recall and F1 score.
+
+### Model Comparison
+
+| Model | Accuracy | Precision | Recall | F1 Score |
+|---|---:|---:|---:|---:|
+| Linear SVM | 98.46% | 85.12% | 82.66% | 83.87% |
+| Logistic Regression | 97.71% | 70.59% | 90.17% | 79.19% |
+| Naive Bayes | 96.03% | 66.67% | 35.84% | 46.62% |
+
+### Understanding the Results
+
+Although Logistic Regression achieved higher recall,
+Linear SVM achieved a stronger balance between precision
+and recall, resulting in the highest F1 score.
+
+This was important because the dataset was imbalanced,
+with significantly more legitimate job postings than
+fraudulent ones.
+
+Accuracy alone would therefore not provide a complete
+picture of model performance.
+
+### Confusion Matrix Analysis
+
+For the Linear SVM model, the test-set confusion matrix
+contained the following results:
+
+| | Predicted Legitimate | Predicted Fraudulent |
+|---|---:|---:|
+| Actual Legitimate | 3,378 | 25 |
+| Actual Fraudulent | 30 | 143 |
+
+This means:
+
+- 3,378 legitimate postings were correctly classified.
+- 143 fraudulent postings were correctly identified.
+- 25 legitimate postings were incorrectly flagged as fraudulent.
+- 30 fraudulent postings were incorrectly classified as legitimate.
+
+### Why False Positives and False Negatives Matter
+
+False positives can cause genuine employment opportunities
+to be incorrectly flagged, potentially discouraging job seekers
+from applying.
+
+False negatives are particularly concerning because fraudulent
+job advertisements may be classified as legitimate, exposing
+job seekers to potential scams.
+
+The model therefore requires a balance between identifying
+fraudulent postings and avoiding incorrect classifications.
+
+## Model Limitations
+
+Several limitations should be considered when interpreting
+the results:
+
+1. **Dataset imbalance:** The labelled dataset contained
+   substantially more legitimate than fraudulent postings.
+
+2. **Dataset representativeness:** Patterns learned from the
+   available dataset may not represent all job scams or
+   legitimate recruitment practices.
+
+3. **Synthetic data:** An additional dataset containing
+   10,000 fake job descriptions was explored separately.
+   Its repetitive, template-generated content meant it was
+   not used to train or evaluate the final model.
+
+4. **False classifications:** The model can incorrectly
+   classify both legitimate and fraudulent advertisements.
+
+5. **Decision score interpretation:** Linear SVM produces
+   a decision score rather than a calibrated probability.
+   The score indicates which side of the classification
+   boundary a posting falls on; it does not represent the
+   percentage likelihood of fraud.
+
+6. **Explainability:** Individual feature contributions
+   reflect learned statistical associations, not definitive
+   evidence that a particular word or phrase indicates fraud.
+
+The application should therefore be treated as an initial
+screening tool rather than a definitive fraud detection system.
+
+## Exploratory Data Analysis and Visualisations
+
+### Class Distribution
+
+![Class Distribution](images/class%20distribution.png)
+
+### Confusion Matrix
+
+![Confusion Matrix](images/confusion%20matrix.png)
+
+### Fake Job Word Cloud
+
+![Fake Job Word Cloud](images/fake%20job%20wordcloud.png)
+
+
+## Future Improvements
+
+Potential areas for further development include:
+
+- Expanding the labelled dataset with more recent job advertisements.
+- Testing the model on data from different sources.
+- Exploring class-weighting and resampling techniques.
+- Evaluating alternative classification thresholds.
+- Investigating probability calibration.
+- Monitoring false positives and false negatives.
+- Exploring additional NLP and explainability techniques.
+
 
 ## Application
 
